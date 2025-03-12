@@ -1,2 +1,73 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+:root {
+    /* Primary: A bold teal for main actions/buttons - symbolizes savings and freshness */
+    --ion-color-primary: #00b7a8;
+    --ion-color-primary-rgb: 0,183,168;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255,255,255;
+    --ion-color-primary-shade: #00a195;
+    --ion-color-primary-tint: #1abdb0;
+
+    /* Secondary: A deep indigo for secondary elements - conveys trust and stability */
+    --ion-color-secondary: #4a3f9f;
+    --ion-color-secondary-rgb: 74,63,159;
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast-rgb: 255,255,255;
+    --ion-color-secondary-shade: #41378c;
+    --ion-color-secondary-tint: #5d52a8;
+
+    /* Tertiary: A bright coral for accents - adds energy and highlights deals */
+    --ion-color-tertiary: #ff577f;
+    --ion-color-tertiary-rgb: 255,87,127;
+    --ion-color-tertiary-contrast: #ffffff;
+    --ion-color-tertiary-contrast-rgb: 255,255,255;
+    --ion-color-tertiary-shade: #e04c70;
+    --ion-color-tertiary-tint: #ff688c;
+
+    /* Success: A lively green for confirmed sales - signals a "go" for savings */
+    --ion-color-success: #39c773;
+    --ion-color-success-rgb: 57,199,115;
+    --ion-color-success-contrast: #000000;
+    --ion-color-success-contrast-rgb: 0,0,0;
+    --ion-color-success-shade: #32af65;
+    --ion-color-success-tint: #4dcc81;
+
+    /* Warning: A warm amber for items not on sale - caution or "hold off" vibe */
+    --ion-color-warning: #ffa23d;
+    --ion-color-warning-rgb: 255,162,61;
+    --ion-color-warning-contrast: #000000;
+    --ion-color-warning-contrast-rgb: 0,0,0;
+    --ion-color-warning-shade: #e08f36;
+    --ion-color-warning-tint: #ffab50;
+
+    /* Danger: A muted red for errors or unavailable products - subtle urgency */
+    --ion-color-danger: #d94c5b;
+    --ion-color-danger-rgb: 217,76,91;
+    --ion-color-danger-contrast: #ffffff;
+    --ion-color-danger-contrast-rgb: 255,255,255;
+    --ion-color-danger-shade: #bf4350;
+    --ion-color-danger-tint: #dd5e6b;
+
+    /* Light: A soft off-white for backgrounds - clean and minimal */
+    --ion-color-light: #f9fafc;
+    --ion-color-light-rgb: 249,250,252;
+    --ion-color-light-contrast: #000000;
+    --ion-color-light-contrast-rgb: 0,0,0;
+    --ion-color-light-shade: #dbdcdf;
+    --ion-color-light-tint: #c5c5c5;
+
+    /* Medium: A slate gray for text/icons - neutral and readable */
+    --ion-color-medium: #6b7280;
+    --ion-color-medium-rgb: 107,114,128;
+    --ion-color-medium-contrast: #ffffff;
+    --ion-color-medium-contrast-rgb: 255,255,255;
+    --ion-color-medium-shade: #5f6671;
+    --ion-color-medium-tint: #7a818d;
+
+    /* Dark: A charcoal for dark mode or headers - strong and grounded */
+    --ion-color-dark: #1f2a44;
+    --ion-color-dark-rgb: 31,42,68;
+    --ion-color-dark-contrast: #ffffff;
+    --ion-color-dark-contrast-rgb: 255,255,255;
+    --ion-color-dark-shade: #1b253c;
+    --ion-color-dark-tint: #354057;
+}
