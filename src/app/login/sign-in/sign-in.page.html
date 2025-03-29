@@ -1,0 +1,20 @@
+<ion-card-content class="main-card-content">
+  <div class="form-container">
+    <h1>Sign In</h1>
+  </div>
+  <div class="form-container">
+    <ion-input label="Email" label-placement="floating" type="email" fill="outline" class="link-input always-float-label" [(ngModel)]="email" mode="md" (click)="clearEmail()" (ionBlur)="placeholderEmail()"></ion-input>
+  </div>
+  <div class="form-container padding-top">
+    <ion-input label="Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" mode="md"></ion-input>
+  </div>
+  <ion-button class="submit-button" color="primary" shape="round" size="default" expand="block" (click)="signIn()">
+    <span>Sign In</span>
+  </ion-button>
+  <div class="form-container">
+    <ion-label>
+      New to SaleSavie?
+      <a (click)="goToSignUp()">Sign up now</a>
+    </ion-label>
+  </div>
+</ion-card-content>

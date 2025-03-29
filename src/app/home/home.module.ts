@@ -13,7 +13,8 @@ import { MessageComponentModule } from '../message/message.module';
     FormsModule,
     IonicModule,
     MessageComponentModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    FormsModule,
   ],
   declarations: [HomePage]
 })

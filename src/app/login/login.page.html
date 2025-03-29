@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      SaleSavie
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">
+        Sale Savie
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+    <h4>{{ greeting }}</h4>
+    <p>Sign in to get instant alerts when prices drop on your tracked items! 🔔 💰 ⬇️</p> 
+  </div>
+
+  <ion-card class="main-card background">
+    <ion-router-outlet></ion-router-outlet>
+  </ion-card>
+</ion-content>

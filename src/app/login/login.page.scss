@@ -1,0 +1,64 @@
+.main-card {
+    --background: var(--ion-color-light-tint);
+    margin: 0px;
+    border-radius: 12px;
+    box-shadow: unset;
+    height: 92%;
+
+    ion-card-header {
+        padding: 10px;
+    }
+}
+
+.main-card.background {
+    --background: var(--ion-color-light-shade);
+}
+
+ion-content, ion-header, ion-toolbar {
+    --background: var(--ion-color-light-tint) !important;
+}
+
+ion-content {
+    ion-header {
+        height: 8%;
+    }
+}
+
+
+
+.day-card-container {
+    ion-item.url-card-item {
+        --background: var(--ion-color-light-shade);
+        --inner-padding-end: 0px;
+        --inner-padding-start: 0px;
+        --padding-start: 0px;
+        --padding-end: 0px;
+    }
+
+    ion-card {
+        padding: 0px;
+        margin: 0px 0px 5px 0px;
+        box-shadow: unset;
+    }
+}
+
+.login-container {
+    margin: 6px;
+    padding: 6px;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 600;
+        padding-bottom: 6px;
+    }
+}
+
+.link-input {
+    --border-radius: 12px;
+}
+
+.submit-button {
+    margin-top: 30px;
+}
+
+
