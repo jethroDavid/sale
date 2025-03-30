@@ -4,6 +4,8 @@ import { RefresherCustomEvent, DatetimeCustomEvent, IonicModule, ToastController
 import * as moment from 'moment';
 import { Browser } from '@capacitor/browser';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -40,15 +42,27 @@ export class HomePage {
       priceHistory: [
         {
           date: 'Mar 11, 2025',
-          price: 'PHP 7,400'
+          price: 'PHP 7,500'
         },
         {
           date: 'Mar 10, 2025',
-          price: 'PHP 7,600'
+          price: 'PHP 7,500'
         },
         {
           date: 'Mar 09, 2025',
           price: 'PHP 7,500'
+        },
+        {
+          date: 'Mar 7, 2025',
+          price: 'PHP 5,500'
+        },
+        {
+          date: 'Mar 6, 2025',
+          price: 'PHP 7,500'
+        },
+        {
+          date: 'Mar 5, 2025',
+          price: 'PHP 6,500'
         },
       ]
     },
@@ -139,7 +153,11 @@ export class HomePage {
     },
   ];
 
-  constructor(private toastController: ToastController) {}
+  constructor(
+    private toastController: ToastController,
+    public auth: AngularFireAuth,
+    public router: Router,
+  ) {}
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -292,7 +310,20 @@ export class HomePage {
     const currentValue = this.extractCurrencyValue(price.price);
     const nextValue = this.extractCurrencyValue(priceHistory[index + 1].price);
     
+    if (currentValue === nextValue) {
+      return '';
+    }
+
     // Return status based on price comparison
     return currentValue > nextValue ? 'up' : 'down';
+  }
+
+  logout() {
+    this.auth.signOut().then(() => {
+      this.router.navigate(['/login']);
+    }).catch((error) => {
+      // An error happened.
+      console.error('Error signing out:', error);
+    });
   }
 }

@@ -1,20 +1,33 @@
 <ion-card-content class="main-card-content">
   <div class="form-container">
-    <h1>Sign In</h1>
+    <h1>Welcome Back</h1>
   </div>
   <div class="form-container">
     <ion-input label="Email" label-placement="floating" type="email" fill="outline" class="link-input always-float-label" [(ngModel)]="email" mode="md" (click)="clearEmail()" (ionBlur)="placeholderEmail()"></ion-input>
   </div>
   <div class="form-container padding-top">
     <ion-input label="Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" mode="md"></ion-input>
+    <div style="text-align: right; margin-top: 8px;">
+      <a style="color: var(--ion-color-medium); font-size: 14px; text-decoration: none;">Forgot password?</a>
+    </div>
   </div>
   <ion-button class="submit-button" color="primary" shape="round" size="default" expand="block" (click)="signIn()">
     <span>Sign In</span>
   </ion-button>
-  <div class="form-container">
+  
+  <div class="divider">
+    <span>OR</span>
+  </div>
+  
+  <ion-button color="secondary" shape="round" size="default" expand="block" (click)="signInWithGoogle()">
+    <ion-icon slot="start" name="logo-google"></ion-icon>
+    <span>Continue with Google</span>
+  </ion-button>
+
+  <div class="form-container" style="text-align: center; margin-top: 10px;">
     <ion-label>
       New to SaleSavie?
-      <a (click)="goToSignUp()">Sign up now</a>
+      <a (click)="goToSignUp()">Create an account</a>
     </ion-label>
   </div>
 </ion-card-content>

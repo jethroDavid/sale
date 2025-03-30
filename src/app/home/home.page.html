@@ -1,12 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Sale Savie
+      <span class="title-text">Sale Savie</span>
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="click-trigger">
+        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-popover #popover trigger="click-trigger" triggerAction="click">
+      <ng-template>
+        <ion-content class="ion-padding">
+          <ion-list>
+            <ion-item>
+              <ion-button expand="full" color="primary" fill="clear" (click)="popover.dismiss()">
+                <ion-icon slot="start" name="settings-outline"></ion-icon>
+                Settings
+              </ion-button>
+            </ion-item>
+            <ion-item>
+              <ion-button expand="full" color="danger" fill="clear" (click)="logout(); popover.dismiss()">
+                <ion-icon slot="start" name="log-out-outline"></ion-icon>
+                Logout
+              </ion-button>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+  <!-- Add decorative elements -->
+  <div class="background-decoration"></div>
+  
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -14,31 +42,45 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">
-        Sale Savie
+        <span class="title-text">Sale Savie</span>
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div class="ion-padding">
-    <h4>Paste link here</h4>
-    <p>Go to the Product Page and copy the link and paste it here 👇</p> 
+  <div class="add-product-card">
+    <h1>Track New Product</h1>
+    <p class="subtitle">Copy a product URL and paste it below to start tracking prices</p>
     
-    <ion-input [(ngModel)]="url" (click)="pasteClipboard()" mode="md" fill="outline" class="link-input" placeholder="https://www.example.com/product"></ion-input>
-
-    <div class="ion-padding-top">
-      <ion-button shape="round" size="default" (click)="addUrl()">
-        <ion-icon slot="start" name="add"></ion-icon>
-        Add to My List
+    <div class="input-container">
+      <ion-input 
+        [(ngModel)]="url" 
+        (click)="pasteClipboard()" 
+        mode="md" 
+        fill="outline" 
+        class="link-input" 
+        placeholder="https://www.example.com/product">
+        <ion-icon name="link-outline" slot="start"></ion-icon>
+      </ion-input>
+      
+      <ion-button 
+        expand="block" 
+        class="add-button" 
+        (click)="addUrl()">
+        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+        Track Price
       </ion-button>
     </div>
   </div>
-  <ion-card class="main-card background">
-    <ion-card-content class="ion-no-padding">
-      <div class="date-container">
+
+  <div class="tracked-products-section">
+    <div class="section-header">
+      <h2>Your Tracked Products</h2>
+      
+      <div class="date-filter">
         <div>
-          <ion-button color="tertiary" id="open-from-date" size="small" shape="round">
-            <ion-label>From:</ion-label>
-            {{ dateFromLabel }}
+          <ion-button color="primary" id="open-from-date" size="small" fill="outline" class="date-button">
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-label>From: {{ dateFromLabel }}</ion-label>
           </ion-button>
           <ion-modal trigger="open-from-date" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.25, 0.5, 0.75]">
             <ng-template>
@@ -49,9 +91,9 @@
           </ion-modal>
         </div>
         <div>
-          <ion-button color="tertiary" id="open-to-date" size="small" shape="round">
-            <ion-label>To:</ion-label>
-            {{ dateToLabel }}
+          <ion-button color="primary" id="open-to-date" size="small" fill="outline" class="date-button">
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-label>To: {{ dateToLabel }}</ion-label>
           </ion-button>
           <ion-modal trigger="open-to-date" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.25, 0.5, 0.75]">
             <ng-template>
@@ -62,73 +104,76 @@
           </ion-modal>
         </div>
       </div>
+    </div>
 
-      <ion-card class="ion-no-margin main-card">
-        <ion-card-content>
-          <div class="day-card-container">
-            <ion-list lines="none">
-              <ion-item-sliding *ngFor="let item of data; let i = index" [@itemAnimation]>
-                <ion-item class="url-card-item">
-                  <ion-card class="url-card">
-                    <ion-card-content>
-                      <div class="url-card-container">
-                        <div class="url-card-header-container">
-                          <div class="url-card-header">
-                            <div class="domain" (click)="openUrl(item.url)">
-                              {{ separateUrl(item.url).domain }}
-                            </div>
-                            <div class="path" (click)="openUrl(item.url)">
-                              {{ separateUrl(item.url).path }}
-                            </div>
-                          </div>
-                          <div class="url-card-content">
-                            <ion-icon name="pricetags"></ion-icon>
-                          </div>
+    <div class="products-list">
+      <ion-list lines="none">
+        <ion-item-sliding *ngFor="let item of data; let i = index" [@itemAnimation]>
+          <ion-item class="product-item">
+            <ion-card class="product-card">
+              <ion-card-content>
+                <div class="product-header">
+                  <div class="product-url" (click)="openUrl(item.url)">
+                    <ion-icon name="globe-outline"></ion-icon>
+                    <div class="url-text">
+                      <span class="domain">{{ separateUrl(item.url).domain }}</span>
+                      <span class="path">{{ separateUrl(item.url).path }}</span>
+                    </div>
+                  </div>
+                  <div class="product-icon">
+                    <ion-icon name="pricetags-outline"></ion-icon>
+                  </div>
+                </div>
+                
+                <ion-accordion-group [value]="i === 0 ? 'first' : ''">
+                  <ion-accordion value="first">
+                    <ion-item slot="header" class="accordion-header">
+                      <ion-label>
+                        <div class="last-update">
+                          <ion-icon name="time-outline"></ion-icon>
+                          <span>Last updated: Mar 12</span>
                         </div>
-                        <div>
-                          <ion-accordion-group [value]="i === 0 ? 'first' : ''">
-                            <ion-accordion value="first">
-                              <ion-item slot="header">
-                                <ion-label>Price History</ion-label>
-                              </ion-item>
-                              <div class="price-history-container" slot="content">
-                                <div class="price">
-                                  <div *ngFor="let price of item.priceHistory; let j = index">
-                                    <div class="date">{{price.date}}</div>
-                                    <ion-badge 
-                                      *ngIf="!!getPriceStatus(j, price, item.priceHistory)"
-                                      fill="outline"
-                                      >
-                                      <!-- [color]="getPriceStatus(j, price, item.priceHistory) === 'up' ? 'danger' : 'success'" -->
-                                      <ion-icon color="light" *ngIf="getPriceStatus(j, price, item.priceHistory) === 'up'" name="trending-up-sharp"></ion-icon>
-                                      <ion-icon color="light" *ngIf="getPriceStatus(j, price, item.priceHistory) === 'down'" name="trending-down-sharp"></ion-icon>
-                                    </ion-badge>
-                                    <ion-badge
-                                      [class]="{'strikethrough': j !== 0}"
-                                      color="success"
-                                    >
-                                      {{price.price}} 
-                                    </ion-badge>
-                                  </div>
-                                </div>
-                              </div>
-                            </ion-accordion>
-                          </ion-accordion-group>
+                      </ion-label>
+                    </ion-item>
+                    <div class="price-history-container" slot="content">
+                      <div class="price">
+                        <div class="discount-container" *ngFor="let price of item.priceHistory; let j = index">
+                          <div class="date">
+                            <span>{{price.date}}</span>
+                            <ion-badge 
+                              fill="outline"
+                              [color]="getPriceStatus(j, price, item.priceHistory) === 'up' ? 'danger' : 'success'"
+                              class="trend-badge"
+                            >
+                              <ng-container [ngSwitch]="getPriceStatus(j, price, item.priceHistory)">
+                                <ion-icon color="light" *ngSwitchCase="'up'" name="trending-up-sharp"></ion-icon>
+                                <ion-icon color="light" *ngSwitchCase="'down'" name="trending-down-sharp"></ion-icon>
+                                <ion-icon color="light" *ngSwitchDefault name="reorder-two-outline"></ion-icon>
+                              </ng-container>
+                            </ion-badge>
+                          </div>
+                          <ion-badge
+                            [class]="{'strikethrough': j !== 0}"
+                            color="success"
+                            class="price-badge"
+                          >
+                            {{price.price}} 
+                          </ion-badge>
                         </div>
                       </div>
-                    </ion-card-content>
-                  </ion-card>
-                </ion-item>
-                <ion-item-options>
-                  <ion-item-option color="danger">
-                    <ion-icon slot="icon-only" name="trash"></ion-icon>
-                  </ion-item-option>
-                </ion-item-options>
-              </ion-item-sliding>
-            </ion-list>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </ion-card-content>
-  </ion-card>
+                    </div>
+                  </ion-accordion>
+                </ion-accordion-group>
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+          <ion-item-options>
+            <ion-item-option color="danger">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>
