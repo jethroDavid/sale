@@ -22,15 +22,15 @@
       <ion-input label="Email" label-placement="floating" type="email" fill="outline" class="link-input always-float-label" [(ngModel)]="email" mode="md" (click)="clearEmail()" (ionBlur)="placeholderEmail()"></ion-input>
     </div>
     <div class="form-container padding-top">
-      <ion-input label="Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" mode="md"></ion-input>
+      <ion-input label="Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" [(ngModel)]="password" mode="md"></ion-input>
     </div>
     <div class="form-container padding-top">
-      <ion-input label="Confirm Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" mode="md"></ion-input>
+      <ion-input label="Confirm Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" [(ngModel)]="confirmPassword" mode="md"></ion-input>
     </div>
-    <ion-button class="submit-button" color="primary" shape="round" size="default" expand="block">
+    <ion-button class="submit-button" color="primary" shape="round" size="default" expand="block" (click)="signUp()">
       <span>Create Account</span>
     </ion-button>
-    
+    <ion-button (click)="temp()">temp</ion-button>
     <div class="divider">
       <span>OR</span>
     </div>

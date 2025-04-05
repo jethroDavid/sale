@@ -6,7 +6,7 @@
     <ion-input label="Email" label-placement="floating" type="email" fill="outline" class="link-input always-float-label" [(ngModel)]="email" mode="md" (click)="clearEmail()" (ionBlur)="placeholderEmail()"></ion-input>
   </div>
   <div class="form-container padding-top">
-    <ion-input label="Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" mode="md"></ion-input>
+    <ion-input label="Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" [(ngModel)]="password" mode="md"></ion-input>
     <div style="text-align: right; margin-top: 8px;">
       <a style="color: var(--ion-color-medium); font-size: 14px; text-decoration: none;">Forgot password?</a>
     </div>

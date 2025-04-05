@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { RefresherCustomEvent, DatetimeCustomEvent, IonicModule, ToastController } from '@ionic/angular';
+import { RefresherCustomEvent, DatetimeCustomEvent, IonicModule } from '@ionic/angular';
 import * as moment from 'moment';
 import { Browser } from '@capacitor/browser';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Route, Router } from '@angular/router';
-
+import { ToastService } from '../services/toast.service';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -154,9 +155,10 @@ export class HomePage {
   ];
 
   constructor(
-    private toastController: ToastController,
+    private toastService: ToastService,
     public auth: AngularFireAuth,
     public router: Router,
+    private storageService: StorageService,
   ) {}
 
   refresh(ev: any) {
@@ -212,17 +214,17 @@ export class HomePage {
 
   addUrl() {
     if (!this.url) {
-      this.presentToast('URL is required!', 'bottom', 'danger-toast');
+      this.toastService.presentToast('URL is required!', 'bottom', 'danger-toast');
       return;
     } else if (!this.isValidUrl(this.url)) {
-      this.presentToast('Invalid URL!', 'bottom', 'danger-toast');
+      this.toastService.presentToast('Invalid URL!', 'bottom', 'danger-toast');
       return;
     }
 
     this.data.unshift({ url: this.url, priceHistory: [] });
     this.url = '';
 
-    this.presentToast('URL added!', 'bottom', 'success-toast');
+    this.toastService.presentToast('URL added!', 'bottom', 'success-toast');
   }
 
   /**
@@ -238,17 +240,6 @@ export class HomePage {
     } catch (e) {
       return false;
     }
-  }
-
-  async presentToast(message: string = '', position: 'top' | 'middle' | 'bottom' = 'bottom', cssClass: 'success-toast' | 'danger-toast' = 'success-toast') {
-    const toast = await this.toastController.create({
-      message,
-      duration: 1500,
-      position: position,
-      cssClass
-    });
-
-    await toast.present();
   }
 
   /**
@@ -319,7 +310,10 @@ export class HomePage {
   }
 
   logout() {
-    this.auth.signOut().then(() => {
+    this.auth.signOut().then(async () => {
+      await this.storageService.remove('user');
+      await this.storageService.remove('token');
+
       this.router.navigate(['/login']);
     }).catch((error) => {
       // An error happened.
