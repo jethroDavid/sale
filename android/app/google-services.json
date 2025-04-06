@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "133130492510",
+    "project_id": "sale-savie",
+    "storage_bucket": "sale-savie.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133130492510:android:863b829c4f4fb51ee772cf",
+        "android_client_info": {
+          "package_name": "com.salesavie.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133130492510-buheeu3qhvtcbg0h3ccuk5aunpr25ga3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.salesavie.app",
+            "certificate_hash": "53eec317f0f88be606f08831290ee94e7ea20457"
+          }
+        },
+        {
+          "client_id": "133130492510-92qkq8cvjmduafunogmro80k4rk9ph56.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnaCu8rO55nXSXD44kQT8J6faUKy5WTRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "133130492510-92qkq8cvjmduafunogmro80k4rk9ph56.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
