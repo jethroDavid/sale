@@ -309,6 +309,8 @@ export class HomePage {
     return currentValue > nextValue ? 'up' : 'down';
   }
 
+  deleteItem(index: number, item: any) {}
+
   logout() {
     this.auth.signOut().then(async () => {
       await this.storageService.remove('user');
