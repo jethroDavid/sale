@@ -1,51 +1,95 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      <!-- SaleSavie -->
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        <!-- SaleSavie -->
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-card-content class="main-card-content">
-    <div class="form-container">
-      <h1>Create Account</h1>
+  <div class="auth-container">
+    <div class="content-wrapper">
+      <ion-card class="auth-card glass-effect">
+        <ion-card-content class="card-content-layout">
+          <section class="card-panel content-padding">
+            <header class="form-section">
+              <h1>Create Account</h1>
+            </header>
+            <form class="login-form">
+              <div class="form-section">
+                <ion-input 
+                  label="Email" 
+                  label-placement="floating" 
+                  type="email" 
+                  fill="outline" 
+                  class="auth-input always-float-label" 
+                  [(ngModel)]="email" 
+                  name="email"
+                  mode="md" 
+                  (click)="clearEmail()" 
+                  (ionBlur)="placeholderEmail()"
+                  aria-label="Email address"
+                  autocomplete="email">
+                </ion-input>
+              </div>
+              <div class="form-section padding-top">
+                <ion-input 
+                  label="Password" 
+                  label-placement="floating" 
+                  type="password" 
+                  fill="outline" 
+                  class="auth-input" 
+                  placeholder="" 
+                  [(ngModel)]="password" 
+                  name="password"
+                  mode="md"
+                  aria-label="Password"
+                  autocomplete="current-password">
+                </ion-input>
+                <div style="text-align: right; margin-top: 8px;">
+                  <!-- <a style="color: var(--ion-color-medium); font-size: 14px; text-decoration: none;">Forgot password?</a> -->
+                </div>
+              </div>
+              <div class="form-section padding-top">
+                <ion-input 
+                  label="Confirm Password" 
+                  label-placement="floating" 
+                  type="password" 
+                  fill="outline" 
+                  class="auth-input" 
+                  placeholder="" 
+                  [(ngModel)]="confirmPassword" 
+                  name="confirm-password"
+                  mode="md"
+                  aria-label="Confirm Password"
+                  autocomplete="current-password">
+                </ion-input>
+                <div style="text-align: right; margin-top: 8px;">
+                </div>
+              </div>
+              <ion-button class="signin-button" color="primary" shape="round" size="default" expand="block" (click)="signUp()" aria-label="Sign up">
+                <span>Create Account</span>
+              </ion-button>
+              
+              <div class="divider" aria-hidden="true">
+                <span>OR</span>
+              </div>
+              
+              <ion-button color="secondary" shape="round" size="default" expand="block" (click)="signInWithGoogle()" aria-label="Sign in with Google">
+                <ion-icon slot="start" name="logo-google"></ion-icon>
+                <span>Continue with Google</span>
+              </ion-button>
+            </form>
+            <div class="form-section" style="text-align: center; margin-top: 10px;">
+              <ion-label>
+                Already have an account?
+                <a (click)="goToSignIn()" role="button" tabindex="0">Sign in</a>
+              </ion-label>
+            </div>
+          </section>
+          <section class="card-panel desktop-only hero-panel">
+            <div class="hero-content">
+              <header class="form-section ion-no-padding">
+                <h1>SaleSavie</h1>
+              </header>
+              <p>Smart shopping, smarter savings! Track prices, get instant alerts, and save big on everything you love. 🔔 💸 ✨</p>
+            </div>
+            <div class="panel-background"></div>
+          </section>
+        </ion-card-content>
+      </ion-card>
     </div>
-    <div class="form-container">
-      <ion-input label="Email" label-placement="floating" type="email" fill="outline" class="link-input always-float-label" [(ngModel)]="email" mode="md" (click)="clearEmail()" (ionBlur)="placeholderEmail()"></ion-input>
-    </div>
-    <div class="form-container padding-top">
-      <ion-input label="Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" [(ngModel)]="password" mode="md"></ion-input>
-    </div>
-    <div class="form-container padding-top">
-      <ion-input label="Confirm Password" label-placement="floating" type="password" fill="outline" class="link-input" placeholder="" [(ngModel)]="confirmPassword" mode="md"></ion-input>
-    </div>
-    <ion-button class="submit-button" color="primary" shape="round" size="default" expand="block" (click)="signUp()">
-      <span>Create Account</span>
-    </ion-button>
-    <div class="divider">
-      <span>OR</span>
-    </div>
-    
-    <ion-button color="secondary" shape="round" size="default" expand="block" (click)="signInWithGoogle()">
-      <ion-icon slot="start" name="logo-google"></ion-icon>
-      <span>Continue with Google</span>
-    </ion-button>
-
-    <div class="form-container" style="text-align: center; margin-top: 10px;">
-      <ion-label>
-        Already have an account?
-        <a (click)="goToSignIn()">Sign in</a>
-      </ion-label>
-    </div>
-  </ion-card-content>
-  <ion-card>
-  </ion-card>
+  </div>
 </ion-content>

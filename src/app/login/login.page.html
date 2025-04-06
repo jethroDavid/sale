@@ -1,13 +1,79 @@
 <ion-content [fullscreen]="true">
-  <div class="ion-padding">
-    <div class="form-container">
-      <h1>SaleSavie</h1>
+  <div class="auth-container">
+    <div class="content-wrapper">
+      <ion-card class="auth-card glass-effect">
+        <ion-card-content class="card-content-layout">
+          <section class="card-panel desktop-only hero-panel">
+            <div class="hero-content">
+              <header class="form-section ion-no-padding">
+                <h1>SaleSavie</h1>
+              </header>
+              <h4>{{ greeting }}</h4>
+              <p>Track prices, get alerts, and never miss a deal! 🔔 💰 ➡️ </p> 
+            </div>
+            <div class="panel-background"></div>
+          </section>
+          <section class="card-panel content-padding">
+            <header class="form-section">
+              <h1>Welcome Back</h1>
+            </header>
+            <form class="login-form">
+              <div class="form-section">
+                <ion-input 
+                  label="Email" 
+                  label-placement="floating" 
+                  type="email" 
+                  fill="outline" 
+                  class="auth-input always-float-label" 
+                  [(ngModel)]="email" 
+                  name="email"
+                  mode="md" 
+                  (click)="clearEmail()" 
+                  (ionBlur)="placeholderEmail()"
+                  aria-label="Email address"
+                  autocomplete="email">
+                </ion-input>
+              </div>
+              <div class="form-section padding-top">
+                <ion-input 
+                  label="Password" 
+                  label-placement="floating" 
+                  type="password" 
+                  fill="outline" 
+                  class="auth-input" 
+                  placeholder="" 
+                  [(ngModel)]="password" 
+                  name="password"
+                  mode="md"
+                  aria-label="Password"
+                  autocomplete="current-password">
+                </ion-input>
+                <div style="text-align: right; margin-top: 8px;">
+                  <!-- <a style="color: var(--ion-color-medium); font-size: 14px; text-decoration: none;">Forgot password?</a> -->
+                </div>
+              </div>
+              <ion-button class="signin-button" color="primary" shape="round" size="default" expand="block" (click)="signIn()" aria-label="Sign in">
+                <span>Sign In</span>
+              </ion-button>
+              
+              <div class="divider" aria-hidden="true">
+                <span>OR</span>
+              </div>
+              
+              <ion-button color="secondary" shape="round" size="default" expand="block" (click)="signInWithGoogle()" aria-label="Sign in with Google">
+                <ion-icon slot="start" name="logo-google"></ion-icon>
+                <span>Continue with Google</span>
+              </ion-button>
+            </form>
+            <div class="form-section" style="text-align: center; margin-top: 10px;">
+              <ion-label>
+                New to SaleSavie?
+                <a (click)="goToSignUp()" role="button" tabindex="0">Create an account</a>
+              </ion-label>
+            </div>
+          </section>
+        </ion-card-content>
+      </ion-card>
     </div>
-    <h4>{{ greeting }}</h4>
-    <p>Track prices, get alerts, and never miss a deal! 🔔 💰 ⬇️</p> 
   </div>
-
-  <ion-card class="main-card background">
-    <ion-router-outlet></ion-router-outlet>
-  </ion-card>
 </ion-content>

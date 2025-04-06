@@ -6,17 +6,6 @@ const routes: Routes = [
   {
     path: '',
     component: LoginPage,
-    children: [
-      {
-        path: 'sign-in',
-        loadChildren: () => import('./sign-in/sign-in.module').then( m => m.SignInPageModule)
-      },
-      {
-        path: '',
-        redirectTo: 'sign-in',
-        pathMatch: 'full'
-      },
-    ]
   },
 ];
 
