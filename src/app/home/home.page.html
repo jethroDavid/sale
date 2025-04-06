@@ -133,30 +133,8 @@
                           </ion-label>
                         </ion-item>
                         <div class="price-history-container" slot="content">
-                          <div class="price">
-                            <div class="discount-container" *ngFor="let price of item.priceHistory; let j = index">
-                              <div class="date">
-                                <span>{{price.date}}</span>
-                                <ion-badge 
-                                  fill="outline"
-                                  [color]="getPriceStatus(j, price, item.priceHistory) === 'up' ? 'danger' : 'success'"
-                                  class="trend-badge"
-                                >
-                                  <ng-container [ngSwitch]="getPriceStatus(j, price, item.priceHistory)">
-                                    <ion-icon color="light" *ngSwitchCase="'up'" name="trending-up-sharp"></ion-icon>
-                                    <ion-icon color="light" *ngSwitchCase="'down'" name="trending-down-sharp"></ion-icon>
-                                    <ion-icon color="light" *ngSwitchDefault name="reorder-two-outline"></ion-icon>
-                                  </ng-container>
-                                </ion-badge>
-                              </div>
-                              <ion-badge
-                                [class]="{'strikethrough': j !== 0}"
-                                color="success"
-                                class="price-badge"
-                              >
-                                {{price.price}} 
-                              </ion-badge>
-                            </div>
+                          <div class="chart-container">
+                            <canvas #priceChart></canvas>
                           </div>
                         </div>
                       </ion-accordion>

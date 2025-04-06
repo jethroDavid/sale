@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChildren, ElementRef, AfterViewInit, QueryList } from '@angular/core';
 import { RefresherCustomEvent, DatetimeCustomEvent, IonicModule } from '@ionic/angular';
 import * as moment from 'moment';
 import { Browser } from '@capacitor/browser';
@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Route, Router } from '@angular/router';
 import { ToastService } from '../services/toast.service';
 import { StorageService } from '../services/storage.service';
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,7 @@ import { StorageService } from '../services/storage.service';
     ]),
   ]
 })
-export class HomePage {
+export class HomePage implements AfterViewInit {
   public url: string = '';
   private dateMonthFormat: string = 'MMM DD, YYYY';
   public dateFromLabel: string = moment().subtract(7, 'days').format(this.dateMonthFormat);
@@ -154,12 +155,20 @@ export class HomePage {
     },
   ];
 
+  @ViewChildren('priceChart') chartElements!: QueryList<ElementRef<HTMLCanvasElement>>;
+  private charts: Chart[] = [];
+
   constructor(
     private toastService: ToastService,
     public auth: AngularFireAuth,
     public router: Router,
     private storageService: StorageService,
   ) {}
+
+  ngAfterViewInit() {
+    // Slight delay to ensure accordions are rendered
+    setTimeout(() => this.renderCharts(), 100);
+  }
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -274,13 +283,13 @@ export class HomePage {
     return isNaN(value) ? 0 : value;
   }
 
-/**
- * Determines the price status (up/down) by comparing current price with the next price in history
- * @param index Current index in the price history array
- * @param price Current price object
- * @param priceHistory Full array of price history
- * @returns 'up' if price increased, 'down' if decreased, empty string if it's the last item
- */
+  /**
+   * Determines the price status (up/down) by comparing current price with the next price in history
+   * @param index Current index in the price history array
+   * @param price Current price object
+   * @param priceHistory Full array of price history
+   * @returns 'up' if price increased, 'down' if decreased, empty string if it's the last item
+   */
   getPriceStatus(
     index: number,
     price: {
@@ -307,6 +316,79 @@ export class HomePage {
 
     // Return status based on price comparison
     return currentValue > nextValue ? 'up' : 'down';
+  }
+
+  renderCharts() {
+    // Destroy existing charts if any
+    this.charts.forEach(chart => chart.destroy());
+    this.charts = [];
+    this.chartElements.forEach((chartElem, index) => {
+      if (this.data[index]?.priceHistory?.length > 0) {
+        const ctx = chartElem.nativeElement.getContext('2d');
+        if (ctx) {
+          const history = this.data[index].priceHistory.slice().reverse();
+          const labels = history.map(item => moment(item.date, 'MMM DD, YYYY').format('MMM DD'));
+          const prices = history.map(item => this.extractCurrencyValue(item.price));
+          
+          // New transparent gradient: starts semi-transparent and fades to fully transparent
+          const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+          gradient.addColorStop(0, 'rgba(0,123,255,0.4)'); // softened color start
+          gradient.addColorStop(1, 'rgba(0,123,255,0)');   // fully transparent end
+
+          const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Price History',
+                data: prices,
+                fill: true,
+                backgroundColor: gradient,
+                borderColor: 'rgba(0,123,255,1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(0,123,255,1)',
+                pointBorderColor: '#fff',
+                pointRadius: 3,
+                tension: 0.3
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: false,
+                  grid: {
+                    color: 'rgba(0, 0, 0, 0.05)'
+                  },
+                  ticks: {
+                    callback: value => 'PHP ' + value,
+                    font: { size: 11 },
+                    color: '#333'
+                  }
+                },
+                x: {
+                  grid: { display: false },
+                  ticks: { font: { size: 11 }, color: '#333' }
+                }
+              },
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  backgroundColor: '#333',
+                  callbacks: {
+                    label: context => 'PHP ' + context.parsed.y
+                  }
+                }
+              },
+              interaction: { mode: 'index', intersect: false },
+              animation: { duration: 1000, easing: 'easeOutQuart' }
+            }
+          });
+          this.charts.push(chart);
+        }
+      }
+    });
   }
 
   deleteItem(index: number, item: any) {}

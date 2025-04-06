@@ -476,6 +476,23 @@ ion-accordion-group {
                     }
                 }
             }
+
+            .chart-container {
+                height: 200px;
+                width: 100%;
+                background: transparent; // changed from white to transparent
+                border-radius: 16px;
+                padding: 16px;
+                margin-bottom: 16px;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+                border: 1px solid rgba(var(--ion-color-light-rgb), 0.5);
+                position: relative;
+                overflow: hidden;
+                canvas {
+                    position: relative;
+                    z-index: 1;
+                }
+            }
         }
 
         ion-item {
@@ -499,7 +516,7 @@ ion-accordion-group {
     .content-wrapper {
         max-width: 1000px;
         width: 100%;
-        padding: 0 20px; /* Add padding for better mobile experience */
+        padding: 0px; /* Add padding for better mobile experience */
     }
 }
 
