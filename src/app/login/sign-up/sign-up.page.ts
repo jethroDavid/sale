@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { FirebaseAuthenticationService } from 'src/app/core';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
@@ -26,6 +25,9 @@ export class SignUpPage implements OnInit {
     private toastService: ToastService,
     private authService: AuthService,
     private storageService: StorageService,
+    private firebaseAuthenticationService: FirebaseAuthenticationService,
+    private platform: Platform,
+    private navCtrl: NavController,
   ) { }
 
   ngOnInit() {}
@@ -75,48 +77,59 @@ export class SignUpPage implements OnInit {
   }
 
   goToSignIn() {
-    this.router.navigate(['/login']);
-  }
-  
-  temp() {
-    this.router.navigate(['/home']);
+    this.navCtrl.navigateBack('/login');
   }
 
   signInWithGoogle() {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then((result) => {
-        // Successfully signed in
-        console.log('User signed in successfully', result.user);
-        
-        // Correctly access the ID token
-        const credential = result.credential as firebase.auth.OAuthCredential;
-        const idToken = credential?.idToken;
-        
-        if (idToken) {
-          this.authService.registerGoogle(idToken).subscribe({
-            next: (response) => {
-              this.toastService.presentToast('Login successful', 'top', 'success-toast');
-              this.storageService.set('user', response.user);
-              this.storageService.set('token', response.token);
-              this.router.navigate(['/home']);
-            },
-            error: (error) => {
-              console.error('Login error:', error);
-              this.toastService.presentToast('Login failed', 'top', 'danger-toast');
-            }
-          });
-        } else {
-          console.error('No ID token found in the credential');
-          this.toastService.presentToast('Authentication failed: No ID token', 'top', 'danger-toast');
-        }
-      })
-      .catch((error) => {
-        console.error('Error during sign in:', error);
-        // Handle specific error cases
-        if (error.code === 'auth/configuration-not-found') {
-          console.error('Firebase configuration is missing or incorrect');
-        }
-        this.toastService.presentToast('Google sign-in failed', 'top', 'danger-toast');
-      });
+    if (this.platform.is('android') || this.platform.is('ios')) {
+      // Mobile implementation (Android/iOS) using Capacitor
+      this.firebaseAuthenticationService.signInWithGoogle()
+        .then(result => {
+          console.log('User signed in successfully with Capacitor', result.user);
+          this.processGoogleAuthResult(result);
+        })
+        .catch(error => {
+          console.error('Error during Capacitor Google sign in:', error);
+          this.toastService.presentToast('Google sign-in failed', 'top', 'danger-toast');
+        });
+    } else {
+      // Web implementation using popup
+      this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then(result => {
+          console.log('User signed in successfully with Web', result.user);
+          this.processGoogleAuthResult(result);
+        })
+        .catch(error => {
+          console.error('Error during sign in:', error);
+          if (error.code === 'auth/configuration-not-found') {
+            console.error('Firebase configuration is missing or incorrect');
+          }
+          this.toastService.presentToast('Google sign-in failed', 'top', 'danger-toast');
+        });
+    }
+  }
+
+  private processGoogleAuthResult(result: any) {
+    const credential = result.credential as firebase.auth.OAuthCredential;
+    const idToken = credential?.idToken;
+    
+    if (!idToken) {
+      console.error('No ID token found in the credential');
+      this.toastService.presentToast('Authentication failed: No ID token', 'top', 'danger-toast');
+      return;
+    }
+    
+    this.authService.registerGoogle(idToken).subscribe({
+      next: (response) => {
+        this.toastService.presentToast('Login successful', 'top', 'success-toast');
+        this.storageService.set('user', response.user);
+        this.storageService.set('token', response.token);
+        this.router.navigate(['/home']);
+      },
+      error: (error) => {
+        console.error('Login error:', error);
+        this.toastService.presentToast('Login failed', 'top', 'danger-toast');
+      }
+    });
   }
 }

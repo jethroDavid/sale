@@ -3,7 +3,7 @@
     margin: 12px;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    height: 92%;
+    height: 74%;
     overflow: hidden;
     position: relative;
 
@@ -63,7 +63,7 @@ ion-title {
 }
 
 .ion-padding {
-    padding: 20px;
+    padding: 8px 20px;
 
     h4 {
         font-size: 28px;
@@ -117,4 +117,21 @@ ion-title {
     margin-top: 30px;
 }
 
-
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    padding-bottom: 20px;
+    color: var(--ion-color-dark);
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 12px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: var(--ion-color-primary);
+        border-radius: 3px;
+    }
+}
