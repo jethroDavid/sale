@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
       
       if (!isAuthenticated) {
         // If not authenticated, redirect to login page
-        this.toastService.presentToast('Please log in to access this page', 'top', 'danger-toast');
+        this.toastService.presentToast('Please log in to access this page', 'top', 'danger');
         this.router.navigate(['/login']);
         return false;
       }

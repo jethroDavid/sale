@@ -18,13 +18,13 @@ export class ToastService {
   async presentToast(
     message: string = '', 
     position: 'top' | 'middle' | 'bottom' = 'bottom', 
-    cssClass: 'success-toast' | 'danger-toast' = 'success-toast'
+    color: "danger" | "dark" | "light" | "medium" | "primary" | "secondary" | "success" | "tertiary" | "warning" | string | undefined
   ) {
     const toast = await this.toastController.create({
       message,
       duration: 1500,
       position: position,
-      cssClass
+      color: color,
     });
 
     await toast.present();

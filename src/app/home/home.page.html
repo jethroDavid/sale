@@ -75,7 +75,7 @@
           
           <div class="date-filter">
             <div>
-              <ion-button color="primary" id="date-filter-from" size="small" fill="outline" class="date-button" aria-label="From date filter">
+              <ion-button color="primary" id="date-filter-from" size="small" [fill]="dateFrom ? 'solid' : 'outline'" class="date-button" aria-label="From date filter">
                 <ion-icon name="calendar-outline" slot="start"></ion-icon>
                 <ion-label>From: {{ dateFromLabel }}</ion-label>
               </ion-button>
@@ -88,7 +88,7 @@
               </ion-modal>
             </div>
             <div>
-              <ion-button color="primary" id="date-filter-to" size="small" fill="outline" class="date-button" aria-label="To date filter">
+              <ion-button color="primary" id="date-filter-to" size="small" [fill]="dateTo ? 'solid' : 'outline'" class="date-button" aria-label="To date filter">
                 <ion-icon name="calendar-outline" slot="start"></ion-icon>
                 <ion-label>To: {{ dateToLabel }}</ion-label>
               </ion-button>
@@ -105,9 +105,9 @@
     
         <div class="products-list">
           <ion-list lines="none">
-            <ion-item-sliding *ngFor="let item of data; let i = index" [@itemAnimation]>
+            <ion-item-sliding *ngFor="let item of data; let i = index" [@itemAnimation] #slidingItem>
               <ion-item class="product-item">
-                <ion-card class="product-card">
+                <ion-card class="product-card" [ngClass]="{'failed-item': item.failed_attempts === 3 && item.active === 0}">
                   <ion-card-content>
                     <div class="product-header">
                       <div class="product-url" (click)="openUrl(item.url)" role="button" tabindex="0" [attr.aria-label]="'Open ' + separateUrl(item.url).domain">
@@ -122,17 +122,21 @@
                       </div>
                     </div>
                     
-                    <ion-accordion-group [value]="i === 0 ? 'first' : ''">
-                      <ion-accordion value="first">
+                    <ion-accordion-group (ionChange)="openUserUrlAnalysisResults($event, i)" [value]="i === 0 ? 'first' : ''" multiple="false">
+                      <ion-accordion [value]="item.id">
                         <ion-item slot="header" class="accordion-header">
                           <ion-label>
                             <div class="last-update">
                               <ion-icon name="time-outline"></ion-icon>
-                              <span>Last updated: Mar 12</span>
+                              <span>Last checked: {{ item?.lastChecked ? formatLastChecked(item.lastChecked) : 'n/a' }}</span>
                             </div>
                           </ion-label>
                         </ion-item>
                         <div class="price-history-container" slot="content">
+                          <div *ngIf="item.failed_attempts === 3 && item.active === 0" class="failed-message">
+                            <ion-icon name="alert-circle-outline"></ion-icon>
+                            <p>Multiple attempts to fetch price data have failed. We apologize for the inconvenience.</p>
+                          </div>
                           <div class="chart-container">
                             <canvas #priceChart></canvas>
                           </div>
@@ -143,12 +147,19 @@
                 </ion-card>
               </ion-item>
               <ion-item-options>
-                <ion-item-option color="danger" aria-label="Delete product">
-                  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-                </ion-item-option>
+                <div class="item-options">
+                  <ion-button (click)="deleteUserUrl(item.id)" color="danger" shape="round">
+                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                  </ion-button>
+                </div>
               </ion-item-options>
             </ion-item-sliding>
           </ion-list>
+          <div *ngIf="!data.length" class="add-product-card">
+            <p class="subtitle">
+              No tracked products yet. Add a product URL to start tracking prices.
+            </p>
+          </div>
         </div>
       </div>
     </div>

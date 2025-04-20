@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  // apiUrl: 'http://192.168.254.138:3000/api',
   apiUrl: 'http://localhost:3000/api',
   firebase: {
     apiKey: "AIzaSyDOeR7G-fP1QA5COsmweNeBuE5tjZPJ_yo",

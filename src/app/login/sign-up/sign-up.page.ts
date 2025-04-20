@@ -46,32 +46,32 @@ export class SignUpPage implements OnInit {
 
   signUp() {
     if (!this.email || !this.password || !this.confirmPassword) {
-      this.toastService.presentToast('Please fill in all fields', 'top', 'danger-toast');
+      this.toastService.presentToast('Please fill in all fields', 'top', 'danger');
       return;
     }
 
     if (this.password !== this.confirmPassword) {
-      this.toastService.presentToast('Passwords do not match', 'top', 'danger-toast');
+      this.toastService.presentToast('Passwords do not match', 'top', 'danger');
       return;
     }
 
     if (this.password.length < 6) {
-      this.toastService.presentToast('Password must be at least 6 characters long', 'top', 'danger-toast');
+      this.toastService.presentToast('Password must be at least 6 characters long', 'top', 'danger');
       return;
     }
 
     this.authService.register(this.email, this.password).subscribe({
       next: (response) => {
-        this.toastService.presentToast('Registration successful', 'top', 'success-toast');
+        this.toastService.presentToast('Registration successful', 'top', 'success');
 
-        this.storageService.set('user', response.user);
+        this.storageService.set('user', response.email);
         this.storageService.set('token', response.token);
         
         this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error('Registration error:', error);
-        this.toastService.presentToast('Registration failed', 'top', 'danger-toast');
+        this.toastService.presentToast('Registration failed', 'top', 'danger');
       }
     });
   }
@@ -90,7 +90,7 @@ export class SignUpPage implements OnInit {
         })
         .catch(error => {
           console.error('Error during Capacitor Google sign in:', error);
-          this.toastService.presentToast('Google sign-in failed', 'top', 'danger-toast');
+          this.toastService.presentToast('Google sign-in failed', 'top', 'danger');
         });
     } else {
       // Web implementation using popup
@@ -104,7 +104,7 @@ export class SignUpPage implements OnInit {
           if (error.code === 'auth/configuration-not-found') {
             console.error('Firebase configuration is missing or incorrect');
           }
-          this.toastService.presentToast('Google sign-in failed', 'top', 'danger-toast');
+          this.toastService.presentToast('Google sign-in failed', 'top', 'danger');
         });
     }
   }
@@ -115,20 +115,20 @@ export class SignUpPage implements OnInit {
     
     if (!idToken) {
       console.error('No ID token found in the credential');
-      this.toastService.presentToast('Authentication failed: No ID token', 'top', 'danger-toast');
+      this.toastService.presentToast('Authentication failed: No ID token', 'top', 'danger');
       return;
     }
     
     this.authService.registerGoogle(idToken).subscribe({
       next: (response) => {
-        this.toastService.presentToast('Login successful', 'top', 'success-toast');
-        this.storageService.set('user', response.user);
+        this.toastService.presentToast('Login successful', 'top', 'success');
+        this.storageService.set('user', response.email);
         this.storageService.set('token', response.token);
         this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error('Login error:', error);
-        this.toastService.presentToast('Login failed', 'top', 'danger-toast');
+        this.toastService.presentToast('Login failed', 'top', 'danger');
       }
     });
   }
