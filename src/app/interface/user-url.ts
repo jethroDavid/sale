@@ -5,5 +5,6 @@ export interface UserUrl {
     lastChecked: string;
     created_at: string;
     active: number;
+    status: string;
     failed_attempts: number;
 }

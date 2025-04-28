@@ -1,0 +1,134 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <span class="title-text">How To Use</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+  <div class="how-to-container">
+    <div class="content-wrapper">
+      <div class="intro-card">
+        <h1>Welcome to SaleSavie!</h1>
+        <p class="subtitle">Your personal price tracker that helps you save money by notifying you when your favorite products go on sale.</p>
+      </div>
+
+      <div class="features-section">
+        <div class="section-header">
+          <h2>Getting Started</h2>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-icon">
+              <ion-icon name="link-outline"></ion-icon>
+            </div>
+            <h3>Step 1: Add a product URL</h3>
+          </div>
+          <div class="step-content">
+            <p>Copy the URL of any product you want to track from online stores like Amazon, eBay, Walmart, etc.</p>
+            <p>Paste the URL in the input field on the home page and click "Track Price".</p>
+            <div class="tip-box">
+              <ion-icon name="bulb-outline"></ion-icon>
+              <span>Tip: Make sure the URL leads directly to a product page, not a search results or category page.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-icon">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+            <h3>Step 2: Monitor price changes</h3>
+          </div>
+          <div class="step-content">
+            <p>SaleSavie will check the price of your tracked products regularly (usually once per day).</p>
+            <p>You can see the price history in the chart when you click on a tracked product.</p>
+            <div class="tip-box">
+              <ion-icon name="bulb-outline"></ion-icon>
+              <span>Tip: Use the date filters to view price changes within a specific time range.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-icon">
+              <ion-icon name="notifications-outline"></ion-icon>
+            </div>
+            <h3>Step 3: Get notified of price drops</h3>
+          </div>
+          <div class="step-content">
+            <p>When a price drop is detected, SaleSavie will automatically send you an email notification.</p>
+            <p>Click the link in the email to visit the product page and take advantage of the lower price.</p>
+            <div class="tip-box">
+              <ion-icon name="bulb-outline"></ion-icon>
+              <span>Tip: Check your spam folder if you don't see notifications, and add our email to your contacts.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <h2>FAQ</h2>
+        </div>
+
+        <ion-accordion-group>
+          <ion-accordion value="first">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>Why did my product tracking fail?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>Some websites have enhanced security measures or anti-bot systems that prevent SaleSavie from accessing their content. If your tracking fails after 3 attempts, try a different website or make sure the URL is correct.</p>
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="second">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>How accurate are the prices?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>SaleSavie works hard to get accurate prices, but websites change their layouts frequently. If you notice any inaccuracies, please let us know by contacting support.</p>
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="third">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>How do I remove a tracked product?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>Swipe left on any product card on the home page to reveal the delete button. Tap the trash icon to remove the product from your tracking list.</p>
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="fifth">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>Why should I donate?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>SaleSavie is developed and maintained by a solo developer. Your donations help cover server costs, development time, and enable new features. Every contribution, no matter how small, is greatly appreciated!</p>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+
+        <div class="section-header">
+          <h2>Contact Me</h2>
+        </div>
+
+        <div class="contact-card">
+          <p>Having issues or questions about SaleSavie? Feel free to reach out!</p>
+          <div class="contact-buttons">
+            <ion-button href="mailto:jethro.clein.david@gmail.com?subject=SaleSavie Support Request" expand="block" color="primary">
+              <ion-icon name="mail-outline" slot="start"></ion-icon>
+              Contact Me
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
