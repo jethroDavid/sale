@@ -226,26 +226,50 @@ ion-content {
     }
 }
 
-ion-segment {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0;
+ion-segment.footer-segment-style {
     border-radius: 24px;
-    width: 350px;
-    bottom: 8px;
-    z-index: 99;
-    --background: var(--ion-color-dark);
+    max-width: 400px;
+}
+
+ion-segment.tracker {
+    --background: linear-gradient(190deg, var(--ion-color-primary), var(--ion-color-secondary));
+}
+
+ion-segment.checker {
+    --background: linear-gradient(90deg, var(--ion-color-secondary), var(--ion-color-tertiary));
 }
 
 ion-segment-button {
     --color: var(--ion-color-light);
     --color-checked: var(--ion-color-light);
-    --indicator-color: var(--ion-color-dark);
+    // --indicator-color: var(--ion-color-dark);
+    --indicator-color: transparent;
     --border-radius: 24px;
     --border-width: 0px;
     --indicator-box-shadow: inset 0px 0px 0px 1px var(--ion-color-light);
     height: 36px;
+
+    ion-text{
+        font-size: 12px;
+        font-weight: 600;
+    }
+}
+
+.segment-container {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    padding: 0 12px;
+    z-index: 99;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+ion-router-outlet {
+    margin-bottom: 30px;
 }
 
 // Responsive styles

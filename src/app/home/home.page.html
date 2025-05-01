@@ -5,7 +5,7 @@
     </ion-title>
     <ion-buttons slot="end">
       <ion-button id="user-menu-trigger" aria-label="User menu">
-        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-popover #popover trigger="user-menu-trigger" triggerAction="click">
@@ -38,25 +38,30 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment
-    [(ngModel)]="segmentValue"
-    mode="ios"
-    class="footer-segment-style"
-    (ionChange)="segmentChange($event)"
-  >
-    <ion-segment-button value="tracker">
-      <ion-text>
-        <ion-icon name="pricetag-outline"></ion-icon>
-        Price Tracker
-      </ion-text>
-    </ion-segment-button>
-    <ion-segment-button value="checker">
-      <ion-text>Stock Checker</ion-text>
-    </ion-segment-button>
-    <ion-segment-button value="pick">
-      <ion-text>Savvy Picks</ion-text>
-    </ion-segment-button>
-  </ion-segment>
+  <div class="segment-container">
+    <ion-segment
+      [(ngModel)]="segmentValue"
+      mode="ios"
+      [class]="{'footer-segment-style': true, 'tracker': segmentValue === 'tracker', 'checker': segmentValue === 'checker'}"
+      (ionChange)="segmentChange($event)"
+    >
+      <ion-segment-button value="tracker">
+        <ion-text>
+          PRICE TRACKER
+        </ion-text>
+      </ion-segment-button>
+      <ion-segment-button value="checker">
+        <ion-text>
+          STOCK CHECKER
+        </ion-text>
+      </ion-segment-button>
+      <ion-segment-button value="pick">
+        <ion-text>
+          SAVVY PICKS
+        </ion-text>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
   <!-- Router outlet for child pages -->
     <ion-router-outlet></ion-router-outlet>

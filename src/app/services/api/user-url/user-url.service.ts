@@ -14,12 +14,27 @@ export class UserUrlService {
   getUserUrls<T>(fromDate: string | null = null, toDate: string | null = null) {
     return this.apiService.get<ApiResponse<T>>('user-urls', { fromDate, toDate }, true);
   }
-
+  
   getUserUrlAnalysisResults<T>(urlId: number) {
     return this.apiService.get<ApiResponse<T>>(`user-urls/analysis`, { urlId }, true);
   }
-
+  
   deleteUserUrl<T>(urlId: number) {
     return this.apiService.delete<ApiResponse<T>>(`user-urls/${urlId}`, true);
+  }
+
+
+  
+  
+  getUserAvailabilityUrls<T>(fromDate: string | null = null, toDate: string | null = null) {
+    return this.apiService.get<ApiResponse<T>>('user-urls/availability', { fromDate, toDate }, true);
+  }
+  
+  getUserAvailabilityUrlAnalysisResults<T>(urlId: number) {
+    return this.apiService.get<ApiResponse<T>>(`user-urls/analysis/availability`, { urlId }, true);
+  }
+
+  deleteAvailabilityUserUrl<T>(urlId: number) {
+    return this.apiService.delete<ApiResponse<T>>(`user-urls/availability/${urlId}`, true);
   }
 }

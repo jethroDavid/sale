@@ -14,4 +14,8 @@ export class RegisterUrlService {
   registerUrl<T>(url: string, frequency: string = '', email: string = '') {
     return this.apiService.post<ApiResponse<T>>('register-url', { url, frequency, email }, true);
   }
+    
+  registerAvailabilityUrl<T>(url: string, frequency: string = '', email: string = '') {
+    return this.apiService.post<ApiResponse<T>>('register-url/availability', { url, frequency, email }, true);
+  }
 }

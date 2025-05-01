@@ -33,6 +33,7 @@
     "@ionic/angular": "^8.0.0",
     "@ionic/storage": "^4.0.0",
     "@ionic/storage-angular": "^4.0.0",
+    "chartjs-adapter-moment": "^1.0.1",
     "firebase": "^11.5.0",
     "ionicons": "^7.0.0",
     "moment": "^2.30.1",
