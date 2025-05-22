@@ -10,11 +10,6 @@ const routes: Routes = [
     canActivate: [ProtectedRouteGuard]
   },
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthGuard]
@@ -27,6 +22,15 @@ const routes: Routes = [
   {
     path: 'how-to-use',
     loadChildren: () => import('./how-to-use/how-to-use.module').then( m => m.HowToUsePageModule)
+  },
+  {
+    path: 'landing',
+    loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'landing',
+    pathMatch: 'full'
   },
 ];
 

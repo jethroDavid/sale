@@ -1,0 +1,317 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <span class="title-text">SaleSavie</span>
+    </ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button routerLink="/how-to-use">
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Smart Shopping Starts Here</h1>
+      <p>Track prices, monitor availability, and never miss a deal again.</p>
+      <div class="hero-cta">
+        <ion-button size="large" routerLink="/home">
+          <ion-icon slot="start" name="pricetags-outline"></ion-icon>
+          Start Tracking Now
+        </ion-button>
+        <ion-button size="large" fill="outline" routerLink="/how-to-use">
+          <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+          Learn More
+        </ion-button>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+
+  <div class="landing-container">
+    <div class="content-wrapper">
+      <!-- Main Welcome Content -->
+      <div class="intro-card">
+        <h2>Welcome to SaleSavie!</h2>
+        <p class="subtitle">
+          Your smart shopping companion designed to save you time and money. Automatically track product prices across the web and monitor item availability, ensuring you never miss a great deal or a crucial restock.
+        </p>
+      </div>
+
+      <div class="features-section">
+        <!-- Price Tracker Card -->
+        <div class="feature-card tracker-card">
+          <div>
+            <div class="feature-header tracker-icon">
+              <div class="feature-icon">
+                <ion-icon name="pricetags-outline"></ion-icon>
+              </div>
+              <h2>Price Tracker</h2>
+            </div>
+            <!-- <ion-img src="assets/images/price-tracker-illustration.svg" alt="Price Tracker Illustration" class="feature-image"></ion-img> -->
+            <div class="feature-content">
+              <p>Tired of manually checking prices? Add any product URL, and SaleSavie will monitor it for you. Get notified instantly via email when the price drops below your desired threshold or simply when it changes. View detailed price history charts to spot trends and make informed purchasing decisions.</p>
+            </div>
+          </div>
+          <ion-button expand="block" class="action-button" color="primary" routerLink="/home" [queryParams]="{tab: 'tracker'}">
+            <ion-icon slot="start" name="trending-down-outline"></ion-icon>
+            Go to Price Tracker
+          </ion-button>
+        </div>
+
+        <!-- Availability Checker Card -->
+        <div class="feature-card checker-card">
+          <div>
+            <div class="feature-header checker-icon">
+              <div class="feature-icon">
+                <ion-icon name="eye-outline"></ion-icon>
+              </div>
+              <h2>Availability Checker</h2>
+            </div>
+            <!-- <ion-img src="assets/images/availability-checker-illustration.svg" alt="Availability Checker Illustration" class="feature-image"></ion-img> -->
+            <div class="feature-content">
+              <p>Waiting for that elusive item to come back in stock? Monitor out-of-stock products effortlessly. Receive immediate email alerts the moment they become available again. Perfect for high-demand electronics, limited edition collectibles, or essential items.</p>
+            </div>
+          </div>
+          <ion-button expand="block" class="action-button" color="secondary" routerLink="/home" [queryParams]="{tab: 'checker'}">
+            <ion-icon slot="start" name="checkmark-done-outline"></ion-icon>
+            Go to Availability Checker
+          </ion-button>
+        </div>
+      </div>
+
+      <!-- How It Works Section -->
+      <div class="how-it-works-section">
+        <h2>How It Works in 3 Simple Steps</h2>
+        <div class="steps-container">
+          <div class="step">
+            <div class="step-icon"><ion-icon name="link-outline"></ion-icon></div>
+            <h3>1. Paste URL</h3>
+            <p>Find the product you want online and copy its direct web address (URL).</p>
+          </div>
+          <div class="step">
+            <div class="step-icon"><ion-icon name="scan-circle-outline"></ion-icon></div>
+            <h3>2. Start Tracking</h3>
+            <p>Paste the URL into SaleSavie (Price Tracker or Availability Checker) and click the button.</p>
+          </div>
+          <div class="step">
+            <div class="step-icon"><ion-icon name="notifications-outline"></ion-icon></div>
+            <h3>3. Get Notified</h3>
+            <p>Relax! We'll monitor the product and send you an email alert for price drops or restocks.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why SaleSavie Section -->
+      <div class="why-savie-section">
+        <h2>Why Choose SaleSavie</h2>
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <ion-icon name="time-outline"></ion-icon>
+            </div>
+            <h3>Save Time</h3>
+            <p>No more manual price checking. Let our automated system do the work while you focus on what matters.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <ion-icon name="cash-outline"></ion-icon>
+            </div>
+            <h3>Save Money</h3>
+            <p>Never miss a price drop again. Buy at the optimal time and maximize your savings on every purchase.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <ion-icon name="shield-checkmark-outline"></ion-icon>
+            </div>
+            <h3>Privacy First</h3>
+            <p>We respect your data. No personal information is sold or shared with third parties.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <ion-icon name="flash-outline"></ion-icon>
+            </div>
+            <h3>Real-time Alerts</h3>
+            <p>Receive instant notifications when prices drop or items come back in stock.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonials Section -->
+      <!-- <div class="testimonials-section">
+        <h2>What Our Users Say</h2>
+        <div class="testimonials-container">
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <ion-icon name="chatbubble-outline"></ion-icon>
+            </div>
+            <p class="testimonial-text">"SaleSavie helped me save over $200 on my new laptop by alerting me to a flash sale that only lasted 2 hours. Would have missed it otherwise!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">
+                <ion-icon name="person-circle-outline"></ion-icon>
+              </div>
+              <div class="author-info">
+                <h4>Sarah M.</h4>
+                <p>Tech Enthusiast</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <ion-icon name="chatbubble-outline"></ion-icon>
+            </div>
+            <p class="testimonial-text">"I was hunting for a limited edition sneaker release for months. SaleSavie notified me within seconds of a restock and I finally got them!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">
+                <ion-icon name="person-circle-outline"></ion-icon>
+              </div>
+              <div class="author-info">
+                <h4>James K.</h4>
+                <p>Sneaker Collector</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <ion-icon name="chatbubble-outline"></ion-icon>
+            </div>
+            <p class="testimonial-text">"The price history charts helped me understand when is the best time to buy electronics. I've become a much smarter shopper!"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">
+                <ion-icon name="person-circle-outline"></ion-icon>
+              </div>
+              <div class="author-info">
+                <h4>Emma T.</h4>
+                <p>Budget Planner</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- FAQ Section -->
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <ion-accordion-group>
+          <ion-accordion value="first">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>Why did my product tracking fail?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>Some websites have enhanced security measures or anti-bot systems that prevent SaleSavie from accessing their content. If your tracking fails after 3 attempts, try a different website or make sure the URL is correct.</p>
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="second">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>How accurate are the prices and availability?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>SaleSavie works hard to get accurate information, but websites change their layouts frequently. If you notice any inaccuracies, please let us know by contacting support.</p>
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="third">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>How do I remove a tracked product?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>Swipe left on any product card in either the Price Tracker or Availability Checker tab to reveal the delete button. Tap the trash icon to remove the product from your tracking list.</p>
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="fourth">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>What's the difference between price tracking and availability checking?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>Price tracking monitors products that are already available but you want to buy at a lower price. Availability checking monitors out-of-stock products to notify you when they become available for purchase again.</p>
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="fifth">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>Why should I donate?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>SaleSavie is developed and maintained by a solo developer. Your donations help cover server costs, development time, and enable new features. Every contribution, no matter how small, is greatly appreciated!</p>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+
+      <!-- Supported Stores Section -->
+      <!-- <div class="supported-stores-section">
+        <h2>Works with many popular online stores</h2>
+        <div class="logos-container">
+          <ion-img src="assets/logos/amazon-logo.svg" alt="Amazon Logo"></ion-img>
+          <ion-img src="assets/logos/ebay-logo.svg" alt="eBay Logo"></ion-img>
+          <ion-img src="assets/logos/walmart-logo.svg" alt="Walmart Logo"></ion-img>
+          <ion-img src="assets/logos/bestbuy-logo.svg" alt="Best Buy Logo"></ion-img>
+          <ion-img src="assets/logos/target-logo.svg" alt="Target Logo"></ion-img>
+        </div>
+      </div> -->
+
+      <!-- Call to Action Section -->
+      <!-- <div class="cta-section">
+        <div class="cta-content">
+          <h2>Ready to Start Saving?</h2>
+          <p>Join thousands of smart shoppers who never overpay for online purchases again.</p>
+          <div class="cta-buttons">
+            <ion-button expand="block" size="large" color="primary" routerLink="/tracker">
+              Track Prices Now
+            </ion-button>
+            <ion-button expand="block" size="large" fill="outline" routerLink="/checker">
+              Check Availability
+            </ion-button>
+          </div>
+        </div>
+        <div class="savings-counter">
+          <div class="counter-value">$1.2M+</div>
+          <p>Total user savings with SaleSavie</p>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <!-- <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-text">SaleSavie</span>
+        <p>Your smart shopping companion</p>
+      </div>
+      <div class="footer-links">
+        <div class="link-group">
+          <h3>SaleSavie</h3>
+          <a href="/about">About Us</a>
+          <a href="/blog">Blog</a>
+          <a href="/careers">Careers</a>
+        </div>
+        <div class="link-group">
+          <h3>Support</h3>
+          <a href="/help">Help Center</a>
+          <a href="/contact">Contact Us</a>
+          <a href="/faq">FAQs</a>
+        </div>
+        <div class="link-group">
+          <h3>Legal</h3>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+          <a href="/cookies">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2023 SaleSavie. All rights reserved.</p>
+      <div class="social-icons">
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-icon name="logo-instagram"></ion-icon>
+      </div>
+    </div>
+  </footer> -->
+</ion-content>

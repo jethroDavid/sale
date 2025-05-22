@@ -14,12 +14,12 @@
     <div class="content-wrapper">
       <div class="intro-card">
         <h1>Welcome to SaleSavie!</h1>
-        <p class="subtitle">Your personal price tracker that helps you save money by notifying you when your favorite products go on sale.</p>
+        <p class="subtitle">Your personal shopping assistant that helps you save money by tracking prices and monitoring product availability.</p>
       </div>
 
       <div class="features-section">
         <div class="section-header">
-          <h2>Getting Started</h2>
+          <h2>Price Tracker</h2>
         </div>
 
         <div class="step-card">
@@ -74,6 +74,61 @@
         </div>
 
         <div class="section-header">
+          <h2>Availability Checker</h2>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-icon">
+              <ion-icon name="pulse-outline"></ion-icon>
+            </div>
+            <h3>Step 1: Enter a product URL</h3>
+          </div>
+          <div class="step-content">
+            <p>Copy the URL of an out-of-stock product you want to monitor from any online store.</p>
+            <p>Go to the Availability tab, paste the URL in the input field and click "Monitor Availability".</p>
+            <div class="tip-box">
+              <ion-icon name="bulb-outline"></ion-icon>
+              <span>Tip: This is especially useful for limited edition items, restocks, or hard-to-find products.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-icon">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+            <h3>Step 2: Track availability status</h3>
+          </div>
+          <div class="step-content">
+            <p>SaleSavie will regularly check if the product has become available for purchase.</p>
+            <p>You can see the availability history in the chart when you expand a tracked product.</p>
+            <div class="tip-box">
+              <ion-icon name="bulb-outline"></ion-icon>
+              <span>Tip: The availability chart shows when a product was in stock (green dots) or out of stock (red dots).</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-icon">
+              <ion-icon name="notifications-outline"></ion-icon>
+            </div>
+            <h3>Step 3: Get notified when available</h3>
+          </div>
+          <div class="step-content">
+            <p>When a product becomes available, SaleSavie will send you an immediate notification.</p>
+            <p>Act quickly to purchase your item before it sells out again.</p>
+            <div class="tip-box">
+              <ion-icon name="bulb-outline"></ion-icon>
+              <span>Tip: Availability tracking is paused after a notification is sent to avoid sending multiple alerts.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header">
           <h2>FAQ</h2>
         </div>
 
@@ -89,10 +144,10 @@
 
           <ion-accordion value="second">
             <ion-item slot="header" class="accordion-header">
-              <ion-label>How accurate are the prices?</ion-label>
+              <ion-label>How accurate are the prices and availability?</ion-label>
             </ion-item>
             <div class="accordion-content" slot="content">
-              <p>SaleSavie works hard to get accurate prices, but websites change their layouts frequently. If you notice any inaccuracies, please let us know by contacting support.</p>
+              <p>SaleSavie works hard to get accurate information, but websites change their layouts frequently. If you notice any inaccuracies, please let us know by contacting support.</p>
             </div>
           </ion-accordion>
 
@@ -101,7 +156,16 @@
               <ion-label>How do I remove a tracked product?</ion-label>
             </ion-item>
             <div class="accordion-content" slot="content">
-              <p>Swipe left on any product card on the home page to reveal the delete button. Tap the trash icon to remove the product from your tracking list.</p>
+              <p>Swipe left on any product card in either the Price Tracker or Availability Checker tab to reveal the delete button. Tap the trash icon to remove the product from your tracking list.</p>
+            </div>
+          </ion-accordion>
+
+          <ion-accordion value="fourth">
+            <ion-item slot="header" class="accordion-header">
+              <ion-label>What's the difference between price tracking and availability checking?</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              <p>Price tracking monitors products that are already available but you want to buy at a lower price. Availability checking monitors out-of-stock products to notify you when they become available for purchase again.</p>
             </div>
           </ion-accordion>
 

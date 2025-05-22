@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, Navigation } from '@angular/router';
+import { Router, NavigationEnd, Navigation, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -33,11 +33,24 @@ export class HomePage implements OnInit {
   constructor(
     public auth: AngularFireAuth,
     public router: Router,
+    private route: ActivatedRoute,
     private storageService: StorageService,
     private navCtrl: NavController,
   ) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['tab']) {
+        const tab = params['tab'];
+        this.segmentValue = tab;
+        
+        this.router.navigate([`/home/${tab}`]);
+        // Navigate to the corresponding tab route if needed
+        if (this.router.url === '/home' || this.router.url.startsWith('/home?')) {
+        }
+      }
+    });
+
     // Subscribe to router events to update segment value when navigation occurs
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
